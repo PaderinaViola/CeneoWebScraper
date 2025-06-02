@@ -175,3 +175,4 @@ cython_debug/
 
 # Ceneo Web Scraper
 config.py
+app/data
