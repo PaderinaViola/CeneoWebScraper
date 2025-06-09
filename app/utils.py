@@ -13,16 +13,16 @@ def extract_data(ancestor, selector=None, attribute=None, multiple=False):
             except TypeError:
                 return None
         try:
-            return ancestor.select_one(selector).text.strip()    
+            return ancestor.select_one(selector).text.strip()
         except AttributeError:
             return None
     if attribute:
         return ancestor[attribute]
     return None
 
-def translate_data(text, source="pl", target="en"):
-    return GoogleTranslator(source, target).translate(text=text)
+def translate_data(text, source='pl', target='en'):
+    return GoogleTranslator(source, target).translate(text)
 
 def create_if_not_exists(path):
-    if not os.path.exists("./app/data"):
-        os.mkdir("./app/data")
+    if not os.path.exists(path):
+        os.mkdir(path)

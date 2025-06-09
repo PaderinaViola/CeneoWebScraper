@@ -23,6 +23,7 @@ def extract():
         product.calculate_stats()
         product.generate_charts()
         print(product)
+        product.save_opinions()
         product.save_info()
         return redirect(url_for('product', product_id=product_id))
     else:
