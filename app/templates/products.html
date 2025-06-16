@@ -2,7 +2,7 @@
 {% block title %}List of Products{% endblock %}
 
 {% block content %}
-<h2>List of Extracted Products</h2>
+<h3>List of Extracted Products</h3>
 <table border="1" cellpadding="6">
   <tr>
     <th>Product Name</th>
@@ -15,7 +15,7 @@
   {% for product in products %}
   <tr>
     <td>
-      <a href="{{ url_for('product', product_id=product.product_id) }}">
+      <a href="https://www.ceneo.pl/{{product.product_id}}" target="_blank">
         {{ product.product_name }}
       </a>
     </td>

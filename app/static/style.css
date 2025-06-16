@@ -4,12 +4,17 @@ body {
     margin: 20px;
     background-color: #f9f9f9;
     color: #333;
+    margin-right: 50px;
 }
 
 /* Heading */
 h1, h2 {
     color: #ff6400;
     margin-bottom: 20px;
+}
+
+h3 {
+    color: #2b3672;
 }
 
 /* Table Styling */
@@ -51,17 +56,3 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Buttons for download links (optional enhancement) */
-.download-links a {
-    margin: 0 5px;
-    padding: 5px 10px;
-    background-color: #ff6400;
-    color: white;
-    border-radius: 4px;
-    font-size: 0.9em;
-    text-decoration: none;
-}
-
-.download-links a:hover {
-    background-color: #e55a00;
-}
