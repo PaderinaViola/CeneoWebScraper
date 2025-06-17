@@ -1,4 +1,52 @@
 {% extends 'base.html' %}
-{% block title %}{{product_id}}{% endblock %}
-{%block content%}
-{%endblock%}
+{% block title %}List of Products{% endblock %}
+
+{% block content %}
+<h3>List of Extracted Products</h3>
+<form method="get" action="{{ url_for('product_a') }}">
+  <input type="text" name="product_name" placeholder="Filter by name" value="{{ request.args.get('product_name', '') }}">
+  <button type="submit">Filter</button>
+</form>
+<table id="product-table" class="display">
+  <tr>
+    <th><a href="{{ url_for('product_a', sort_by='product_name', order='asc' if sort_by != 'product_name' or order == 'desc' else 'desc') }}">Product Name</a></th>
+    <th><a href="{{ url_for('product_a', sort_by='opinions_count', order='asc' if sort_by != 'opinions_count' or order == 'desc' else 'desc') }}"># Opinions</a></th>
+    <th>Opinions</th>
+    <th><a href="{{ url_for('product_a', sort_by='pros_count', order='asc' if sort_by != 'pros_count' or order == 'desc' else 'desc') }}"># With Pros</a></th>
+    <th><a href="{{ url_for('product_a', sort_by='cons_count', order='asc' if sort_by != 'cons_count' or order == 'desc' else 'desc') }}"># With Cons</a></th>
+    <th><a href="{{ url_for('product_a', sort_by='average_score', order='asc' if sort_by != 'average_score' or order == 'desc' else 'desc') }}">Average Score</a></th>
+    <th>Downloads</th>
+    <th>Charts</th>
+  </tr>
+  {% for product in products %}
+  <tr>
+    <td>
+      <a href="https://www.ceneo.pl/{{product.product_id}}" target="_blank">
+        {{ product.product_name }}
+      </a>
+    </td>
+    <td>{{ product.opinions_count }}</td>
+    <td>
+      <ul>
+        {% for content in product.opinion_a %}
+          <li>{{ content }}</li>
+        {% endfor %}
+      </ul>
+    </td>
+    <td>{{ product.pros_count }}</td>
+    <td>{{ product.cons_count }}</td>
+    <td>{{ product.average_score }}</td>
+    <td>
+      <a href="{{ url_for('download_opinion_contents', product_id=product.product_id, filetype='csv') }}">CSV</a> |
+      <a href="{{ url_for('download_opinion_contents', product_id=product.product_id, filetype='xlsx') }}">XLSX</a> |
+      <a href="{{ url_for('download_opinion_contents', product_id=product.product_id, filetype='json') }}">JSON</a>
+    </td>
+    <td>
+      <a href="{{ url_for('product_charts', product_id=product.product_id) }}">
+        <button>View Charts</button>
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+
+{% endblock %}

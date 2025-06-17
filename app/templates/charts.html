@@ -1,4 +1,21 @@
 {% extends 'base.html' %}
-{% block title %} {% endblock %}
-{%block content%}
-{%endblock%}
+{% block title %}Charts for {{ product_name }}{% endblock %}
+
+{% block content %}
+<h3>Charts for <a href="https://www.ceneo.pl/{{ product_id }}" target="_blank">{{ product_name }}</a></h3>
+
+<div>
+  <h4>Recommendation Share</h4>
+  <img src="{{ url_for('static', filename=pie_chart) }}" alt="Pie Chart">
+</div>
+
+<div>
+  <h4>Star Rating Distribution</h4>
+  <img src="{{ url_for('static', filename=bar_chart) }}" alt="Bar Chart">
+</div>
+
+<br>
+<a href="{{ url_for('product_a') }}">
+  <button>← Back to Product Page</button>
+</a>
+{% endblock %}
